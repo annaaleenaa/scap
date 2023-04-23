@@ -112,6 +112,7 @@
                       Male
                       <input
                         type="radio"
+                        checked
                         id="g2"
                         name="Gender"
                         value="Female"
@@ -218,6 +219,7 @@
                         id="q1"
                         name="qualification"
                         value="High School"
+                        checked
                       />
                       <label for="q1">High School(10th)</label><br />
                       <input
@@ -341,7 +343,7 @@
             e.preventDefault();
             var formData = $(this).serialize();
             const obj = serializeToObject(formData);
-
+            console.log(obj);
             try {
               const concession_file = await fileRead(
                 document.getElementById("concession_form").files[0]
@@ -361,6 +363,16 @@
                 photo,
                 approved: false,
               };
+
+              const nfilled = Object.keys(registrationData)
+                .filter((key) => {
+                  const data = registrationData[key];
+                  return data === "";
+                })
+                .join(", ");
+              alert(`fields ${nfilled} is not filled!`);
+
+              return 0;
 
               console.log(registrationData);
               registrationsRef.push(registrationData);
