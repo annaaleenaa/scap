@@ -371,8 +371,6 @@
               if (nfilled.length > 0)
                 alert(`fields ${nfilled.join(", ")} is not filled!`);
 
-              return 0;
-
               console.log(registrationData);
               registrationsRef.push(registrationData);
               registrationsRef.once("value").then(function (snapshot) {
