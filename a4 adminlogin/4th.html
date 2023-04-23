@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="../assets/jquery/jquery-3.6.4.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin page</title>
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    <script src="../assets/fb_config.js"></script>
+    <script src="../assets/fileRead.js"></script>
+
+    <script>
+      function get_user(username) {
+        return new Promise((accept, reject) => {
+          const ref = firebase.database().ref("admins");
+          const query = ref.orderByChild("user").equalTo(username);
+          query
+            .once("value")
+            .then((snapshot) => {
+              snapshot.forEach((childSnapshot) => {
+                const user = childSnapshot.val();
+                accept(user);
+              });
+            })
+            .catch((error) => {
+              reject(error);
+            });
+        });
+      }
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <div class="row">
+        <nav
+          class="navbar navbar-expand-sm bg-body-secondary justify-content-center"
+        >
+          <div>
+            <img
+              src="../assets/images/logo.png"
+              width="124"
+              height="106"
+              alt="KSRTC Logo"
+            />
+          </div>
+          <div class="col-md-6 col-9 p-3 px-5">
+            <h2>GOVERNMENT OF KERALA</h2>
+            <h5 class="text-success">-Students Concession Applying Portal</h5>
+          </div>
+        </nav>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 mx-auto mt-5">
+              <div
+                class="login bg-body-secondary p-2"
+                style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)"
+              >
+                <h1 class="text-center">Admin Login</h1>
+
+                <form class="needs-validation p-2">
+                  <div class="form-group">
+                    <label class="form-label" for="email">Username</label>
+                    <input
+                      class="form-control"
+                      name="user"
+                      type="text"
+                      id="username"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input
+                      class="form-control"
+                      name="pass"
+                      type="password"
+                      id="password"
+                    />
+                  </div>
+                  <!-- <input class="btn btn-success w-50 m-3 " id="signin" type="submit" value="SIGN IN"><br> -->
+                  <div class="d-grid m-3 col-6 mx-auto">
+                    <button class="btn btn-success" type="submit">
+                      Signin
+                    </button>
+                  </div>
+                  <a href="../a11 new admin\a11.html" class="col-6 mx-0"
+                    >New?Register here</a
+                  >
+                  <a
+                    href="../a13 admin forgot password\a13.html"
+                    class="col-6 float-end"
+                    >Forgot Password!</a
+                  >
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <script>
+      function serializeToObject(formData) {
+        var formDataObj = {};
+        formData.split("&").forEach(function (pair) {
+          pair = pair.split("=");
+          formDataObj[pair[0]] = decodeURIComponent(pair[1] || "");
+        });
+        return formDataObj;
+      }
+      $(".needs-validation").on("submit", function (e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+        const obj = serializeToObject(formData);
+        get_user(obj.user).then((user) => {
+          if (user.pass === obj.pass) {
+            localStorage.setItem("admin_user", user.user);
+            window.location.href = "../a9 admin options/9th.html";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

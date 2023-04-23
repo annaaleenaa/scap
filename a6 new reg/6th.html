@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="../assets/jquery/jquery-3.6.4.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration page</title>
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    <script src="../assets/fb_config.js"></script>
+    <script src="../assets/fileRead.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="row">
+        <nav
+          class="navbar navbar-expand-sm bg-body-secondary justify-content-center"
+        >
+          <div>
+            <img
+              src="../assets/images/logo.png"
+              width="124"
+              height="106"
+              alt="KSRTC Logo"
+            />
+          </div>
+          <div class="col-md-6 col-9 p-3 px-5">
+            <h2>GOVERNMENT OF KERALA</h2>
+            <h5 class="text-success">-Students Concession Applying Portal</h5>
+          </div>
+        </nav>
+        <div class="container">
+          <div class="row">
+            <div class="mov">
+              <p style="color: black; text-align: center">
+                Application form for concession for students<a
+                  href="../a6 new reg\form1st.jpg"
+                  >click here to download
+                </a>
+              </p>
+            </div>
+            <div>
+              <u>
+                <h1 class="mx-auto p-5 text-center">NEW REGISTRATION</h1>
+              </u>
+            </div>
+            <div class="text-center d-flex justify-content-center">
+              <form id="newregistration">
+                <table
+                  cellpadding="10"
+                  class="bg-body-secondary"
+                  style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)"
+                >
+                  <tr>
+                    <td>First Name</td>
+                    <td>
+                      <input
+                        type="text"
+                        id="name1"
+                        name="FirstName"
+                        maxlength="50"
+                        placeholder="Enter your first name"
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Last Name</td>
+                    <td>
+                      <input
+                        type="text"
+                        id="name2"
+                        name="LastName"
+                        maxlength="50"
+                        placeholder="Enter your second name"
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Email ID</td>
+                    <td>
+                      <input
+                        type="email"
+                        id="email"
+                        name="EmailID"
+                        maxlength="100"
+                        placeholder="Enter your Email"
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Mobile Number</td>
+                    <td>
+                      <input
+                        type="text"
+                        id="phn"
+                        name="MobileNumber"
+                        maxlength="10"
+                        placeholder="xxxxxxxxxx"
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Gender</td>
+                    <td>
+                      <input type="radio" id="g1" name="Gender" value="Male" />
+                      Male
+                      <input
+                        type="radio"
+                        id="g2"
+                        name="Gender"
+                        value="Female"
+                      />
+                      Female
+                      <input
+                        type="radio"
+                        id="g3"
+                        name="Gender"
+                        value="Others"
+                      />
+                      Others
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><label for="dob">Date of Birth:</label></td>
+                    <td>
+                      <input
+                        type="date"
+                        id="dob"
+                        name="dob"
+                        onchange="calculateAge()"
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><label for="age">Age:</label></td>
+                    <td><input type="text" id="age" name="age" readonly /></td>
+                  </tr>
+
+                  <tr>
+                    <td>Address:<br /><br /><br /></td>
+                    <td>
+                      <textarea
+                        name="Address"
+                        id="addrs"
+                        rows="10"
+                        cols="25"
+                      ></textarea>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>City:</td>
+                    <td>
+                      <input type="text" id="city" name="City" maxlength="50" />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>PIN Code:</td>
+                    <td>
+                      <input
+                        type="text"
+                        id="pin"
+                        name="PinCode"
+                        maxlength="6"
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>State:</td>
+                    <td>
+                      <input
+                        type="text"
+                        id="state"
+                        name="State"
+                        maxlength="50"
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Country:</td>
+                    <td><input type="text" id="country" name="Country" /></td>
+                  </tr>
+
+                  <tr>
+                    <td>Bus Stop Pincode:</td>
+                    <td><input type="number" id="stop1" name="busstop1" /></td>
+                  </tr>
+
+                  <tr>
+                    <td>Destination Bus stop Pincode:</td>
+                    <td><input type="number" id="stop2" name="busstop2" /></td>
+                  </tr>
+
+                  <tr>
+                    <td><label for="current-date">Current Date:</label></td>
+                    <td><input type="text" id="currentdate" disabled /></td>
+                  </tr>
+                  <tr>
+                    <td>Aadhar PDF</td>
+                    <td><input type="file" name="aadhar" id="aadhar" /></td>
+                  </tr>
+                  <tr>
+                    <td>Qualification :</td>
+                    <td>
+                      <input
+                        type="radio"
+                        id="q1"
+                        name="qualification"
+                        value="High School"
+                      />
+                      <label for="q1">High School(10th)</label><br />
+                      <input
+                        type="radio"
+                        id="q2"
+                        name="qualification"
+                        value="Higher School"
+                      />
+                      <label for="q2">Higher School(12th)</label><br />
+                      <input
+                        type="radio"
+                        id="q3"
+                        name="qualification"
+                        value="Graduation"
+                      />
+                      <label for="q3">Graduation(Bachelors)</label><br />
+                      <input
+                        type="radio"
+                        id="q4"
+                        name="qualification"
+                        value="Post Graduation"
+                      />
+                      <label for="q4">Post Graduation(Masters)</label><br />
+                      <input
+                        type="radio"
+                        id="q5"
+                        name="qualification"
+                        value="Phd"
+                      />
+                      <label for="q5">Phd</label>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>School/College</td>
+                    <td><input type="text" id="study" name="study" /></td>
+                  </tr>
+
+                  <tr>
+                    <td>Upload concession form</td>
+                    <td>
+                      <input
+                        type="file"
+                        name="concession_form"
+                        id="concession_form"
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Upload your photo</td>
+                    <td><input type="file" name="photo" id="photo" /></td>
+                  </tr>
+
+                  <tr>
+                    <td style="color: green">Use phone number as username</td>
+                  </tr>
+
+                  <tr>
+                    <td>Enter a password</td>
+                    <td><input type="password" id="pass" name="password" /></td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="2" align="center">
+                      <input
+                        type="submit"
+                        class="btn btn-success"
+                        value="Submit"
+                      />
+                      <input
+                        type="reset"
+                        class="btn btn-success"
+                        value="Reset"
+                      />
+                    </td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
+        <script>
+          {
+            document.getElementById("currentdate").value =
+              new Date().toLocaleDateString();
+          }
+
+          function calculateAge() {
+            var dob = new Date(document.getElementById("dob").value);
+            var now = new Date();
+            var age = now.getFullYear() - dob.getFullYear();
+            if (
+              now.getMonth() < dob.getMonth() ||
+              (now.getMonth() == dob.getMonth() &&
+                now.getDate() < dob.getDate())
+            ) {
+              age--;
+            }
+            document.getElementById("age").value = age;
+          }
+        </script>
+
+        <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+
+        <script>
+          function serializeToObject(formData) {
+            var formDataObj = {};
+            formData.split("&").forEach(function (pair) {
+              pair = pair.split("=");
+              formDataObj[pair[0]] = decodeURIComponent(pair[1] || "");
+            });
+            return formDataObj;
+          }
+        </script>
+
+        <script type="module">
+          $("#newregistration").on("submit", async function (e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+            const obj = serializeToObject(formData);
+
+            try {
+              const concession_file = await fileRead(
+                document.getElementById("concession_form").files[0]
+              );
+              const aadhar = await fileRead(
+                document.getElementById("aadhar").files[0]
+              );
+              const photo = await fileRead(
+                document.getElementById("photo").files[0]
+              );
+
+              var registrationsRef = db.ref("registrations");
+              var registrationData = {
+                ...obj,
+                concession_file,
+                aadhar,
+                photo,
+                approved: false,
+              };
+
+              console.log(registrationData);
+              registrationsRef.push(registrationData);
+              registrationsRef.once("value").then(function (snapshot) {
+                var registrations = snapshot.val();
+              });
+              alert("Registration done, wait for approval.");
+            } catch (e) {
+              alert(e);
+            }
+          });
+        </script>
+      </div>
+    </header>
+  </body>
+</html>

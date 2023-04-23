@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="../assets/jquery/jquery-3.6.4.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin options page</title>
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    <script src="../assets/fb_config.js"></script>
+    <script src="../assets/fileRead.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="row">
+        <nav
+          class="navbar navbar-expand-sm bg-body-secondary justify-content-center"
+        >
+          <div>
+            <img
+              src="../assets/images/logo.png"
+              width="124"
+              height="106"
+              alt="KSRTC Logo"
+            />
+          </div>
+          <div class="col-md-6 col-9 p-3 px-5">
+            <h2>GOVERNMENT OF KERALA</h2>
+          </div>
+          <a class="btn btn-primary" href="../a1 welcome\1st.html" role="button"
+            >Home
+          </a>
+        </nav>
+        <section class="anibus p-5">
+          <div class="container">
+            <div id="data" class="d-flex justify-content-center"></div>
+          </div>
+        </section>
+      </div>
+    </header>
+    <script>
+      function approveRegistration(registrationID) {
+        const registrationRef = firebase
+          .database()
+          .ref(`registrations/${registrationID}`);
+        registrationRef.update(
+          {
+            approved: true,
+          },
+          function (error) {
+            if (error) {
+              console.error("Error approving registration:", error);
+            } else {
+              getUnapprovedRegistrations();
+            }
+          }
+        );
+      }
+
+      function getUnapprovedRegistrations() {
+        const unapprovedRef = firebase
+          .database()
+          .ref("registrations")
+          .orderByChild("approved")
+          .equalTo(false);
+
+        unapprovedRef.once("value", function (snapshot) {
+          const dataDiv = document.getElementById("data");
+          snapshot.forEach(function (childSnapshot) {
+            const registrationData = childSnapshot.val();
+            const registrationID = childSnapshot.key;
+            const registrationDiv = document.createElement("div");
+            registrationDiv.innerHTML = `
+            <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">${registrationData.FirstName} ${registrationData.LastName}</h2>
+              <table>
+              <tr>
+                <td class="card-text">Email: ${registrationData.EmailID}</td>
+                <td class="card-text">Mobile Number: ${registrationData.MobileNumber}</td>
+                <td class="card-text">Address: ${registrationData.Address}</td>
+              </tr>
+              <tr>
+              <td class="card-text">City: ${registrationData.City}</td>
+              <td class="card-text">PinCode: ${registrationData.PinCode}</td>
+              <td class="card-text">State: ${registrationData.State}</td>
+              </tr>
+              <tr>
+              <td class="card-text">Country: ${registrationData.Country}</td>
+              <td class="card-text">Bus Stop 1: ${registrationData.busstop1}</td>
+              <td class="card-text">Bus Stop 2: ${registrationData.busstop2}</td>
+              </tr>
+              <tr>
+              <td class="card-text">Study: ${registrationData.study}</td>
+              <td class="card-text">Concession File: <a target="_blank" href="${registrationData.concession_file}">File</a></td>
+              <td class="card-text">Aadhar: <a target="_blank" href="${registrationData.aadhar}">File</a></td>
+              </tr>
+              <tr>
+              <td class="card-text">Photo: <a target="_blank" href="${registrationData.photo}">File</a></td>
+              </tr>
+              </table>
+              <button class="btn btn-primary" onclick="approveRegistration('${registrationID}')">Approve</button>
+            </div>
+          </div>
+
+          `;
+            dataDiv.appendChild(registrationDiv);
+          });
+        });
+      }
+      getUnapprovedRegistrations();
+    </script>
+  </body>
+</html>

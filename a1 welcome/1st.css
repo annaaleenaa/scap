@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+header {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+}
+.header{
+  width: 100%;
+  height: 100vh;
+  
+}
+.bus{
+  background-image: url(bus-break.webp);
+  background-size: 700px 700px;
+  background-repeat: no-repeat;
+  background-position:95%; 
+  
+}
+
+
+
+nav {
+  background: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 15vh;
+  color:#fff;
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+
+
+nav .menu {
+  width: 100%;
+  height: 15vh;
+  display:inline-flex;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+
+nav .mlist{
+  background: #fff;
+  border-radius: 50px;
+  padding: 10px;
+  box-shadow: 0 25px 20px -20px rgba(0, 0, 0, 0.4);
+  text-align: right;
+  float:right;
+
+}
+ nav ul li{
+  list-style: none;
+  display: inline-block;
+  padding: 10px 40px;
+  margin: 6;
+  font-size: 15px;
+  font-weight: 500px;
+  color:#777;
+  cursor: pointer;
+  position:relative;
+  z-index: 2;
+  transition: color 0.5s;
+
+}
+nav ul li::after{
+  content: '';
+  background: #f86008;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: -1;
+  opacity: 0;
+  transition: top 0.5s, opacity 0.5s;;
+  
+}
+nav ul li:hover{
+  color: #fff;
+}  
+nav ul li:hover::after{
+  top: 50%;
+  opacity: 1;
+}
+nav .menu a {
+  width: 25%;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+main {
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  justify-content:left;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+section h1 {
+  /* margin: 30px; */
+  font-size: 40px;
+  font-weight: 700;
+  text-shadow: 2px 1px 5px black;
+  text-transform: uppercase;
+}
+
+section p {
+  font-size: 20px;
+  word-spacing: 2px;
+  margin-bottom: 25px;
+  text-shadow: 1px 1px 1px black;
+}
+
+section a {
+  padding: 12px 30px;
+  border-radius: 4px;
+  outline: none;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all 0.5s ease;
+}
+
+section .btnone {
+  background: #fff;
+  color: #000;
+}
+
+.btnone:hover {
+  background:#f86008;
+  color: white;
+}
+.mov{
+  background-color: rgb(255, 111, 0);
+}
+.about{
+  background-color: rgba(0, 0, 0, 0.2);
+}
+marquee img{
+  justify-content: center;
+}
