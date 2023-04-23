@@ -364,13 +364,12 @@
                 approved: false,
               };
 
-              const nfilled = Object.keys(registrationData)
-                .filter((key) => {
-                  const data = registrationData[key];
-                  return data === "";
-                })
-                .join(", ");
-              alert(`fields ${nfilled} is not filled!`);
+              const nfilled = Object.keys(registrationData).filter((key) => {
+                const data = registrationData[key];
+                return data === "";
+              });
+              if (nfilled.length > 0)
+                alert(`fields ${nfilled.join(", ")} is not filled!`);
 
               return 0;
 
