@@ -1,129 +1,193 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-<script src="assets/jquery/jquery-3.6.4.min.js"></script>
+  <head>
+    <script src="assets/jquery/jquery-3.6.4.min.js"></script>
     <script src="assets/jquery/jquery-3.6.4.min.js"></script>
     <title>SCAP home</title>
-    <link rel="stylesheet" type="text/css" href="a1 welcome/1st.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-</head>
+    <link rel="stylesheet" type="text/css" href="a1 welcome/1st.css" />
 
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+    />
+
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    <script src="assets/fb_config.js"></script>
+    <script src="assets/fileRead.js"></script>
+  </head>
+
+  <body>
     <header class="header">
-        <div class="row text-white">
-            <nav>
-                <div class="log">
-                <div class="col-md-6 col-9 p-3 px-5">
-                    <img src="https://www.keralartc.com/img/logo.png" class="logo"  style="background-color: rgba(0, 0, 0, 0.2); height: 15vh; width: fit-content;">
-                </div>
+      <div class="row text-white">
+        <nav>
+          <div class="log">
+            <div class="col-md-6 col-9 p-3 px-5">
+              <img
+                src="https://www.keralartc.com/img/logo.png"
+                class="logo"
+                style="
+                  background-color: rgba(0, 0, 0, 0.2);
+                  height: 15vh;
+                  width: fit-content;
+                "
+              />
             </div>
-                <div class="menu" class="col-md-6 col-3 my-auto">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <div class="container-fluid">
-
-
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
-                            <ul class="mlist" class="navbar-nav ms-auto">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="a2 Econ\2nd .html">E-con</a></li>
-                                <li><a href="a3 depots\3rd.html">Depots</a></li>
-                                <li><a href="#">Notifications</a></li>
-                            </ul>
-                        </div>
-                </div>
-            </nav>
-
-        </div>
-        </div>
-
-
-        <div class="mov">
-            <marquee behavior="scroll" scrolldelay="50" direction="left" onmouseover="this.stop();"
-                onmouseout="this.start();">
-                <p style="color:#fff">Kerala is issuing Bus concessions to Students of recognized schools/colleges are
-                    issued free / concessional passes to travel from their residence to the school/college within the
-                    limit of 60 Kms.<a href="http://127.0.0.1:5500/a4/4th.html">click here </a></p>
-            </marquee>
-        </div>
-
-
-        <main class="bus">
-            
-            <section>
-                <h1 style="color: #02a308;">സ്വാഗതം</h1>
-                <h1 style="color: #ff6200;" class="animated infinite heartBeat">welcome to SCAP</h1>
-                <p style="color: #02a308;font-size: 25px;font-weight: 700;">"We help you to get Your Online Concession"</p>
-                <a href="a2 Econ\2nd .html" class="btnone">Apply Now</a>
-            </section>
-
-
-        </main>
-
-        </div>
-    </header>
-</body>
-<main class="about">
-
-
-    <section class="p-5">
-        <div class="container">
-
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card p-5" style="width: 18rem;">
-                        <h2 class="text-center" style="color: black;">Chairman & Managing Director</h2>
-                        <img src="assets/images/logo.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h4 class="card-title" style="color: black;"><b>Sri. Biju Prabhakar IAS</b></h4>
-                            <p class="card-text" style="color: black;">A board of Directors consisting of fifteen
-                                members including the Chairman governs the Corporation. </p>
-                        </div>
-                    </div>
-                </div>
-
-                
-    </section>
-    <!-- <section> -->
-    <!-- <div class="row"> -->
-						  
-        <div class="col-md-12">
-      <div>
-          <h1 style="color: black;"><u>Existing System for Apply Concession </u></h1><br>
-          <div class="news-main" style="height:100px !important">
-          <marquee behavior="scroll" scrolldelay="50" direction="up" onmouseover="this.stop();" onmouseout="this.start();">
-          
-          <img src="https://3.bp.blogspot.com/-VTnJrVTjYOw/WwpnJ7PFbzI/AAAAAAAAJtw/DdNOhAauVTMJpuiLB9er4oyuH47FICkPACLcBGAs/s1600/ksrtc-student-concession.jpg">
-          
-          
-          
-              <h2 style="color: black; text-align: center;"><u><b>KSRTC concession for students & Guidelines to Apply</b></u></h2><br><br>
-              <p style="color: black;">Let us have a look on the instructions to be followed for availing of concession from KSRTC for school and college students. A distance of 40 km is the limit set by KSRTC for students to avail of concession. For more than this limit, the students should produce a certificate of attestation from the head of the institution, stating that the student has got admission under govt merit quota and there is no other institution within the set limit of 40 km of distance which conducts the course of study chosen by the student. Usually, the bus concession is permitted to students to travel in ordinary buses only. The bus concession is allotted from the day of commencement of the course of study for school and college level students and those who study under semester system can avail of it continuously – from the beginning to the end of the course.</p><hr>
-              
-              <h2 style="color: black;text-align: center;"><u><b>How to apply for KSRTC concession</b></u></h2><br><br>
-                 <p style="color: black;">When a student applies for KSRTC concession for the first time, he/she should get an identification certificate in the prescribed format(application form can be downloaded from the link below). Along with the application, 2 photographs attested by the head of the institution also be submitted. This application form should be given to the KSRTC depot which is very nearby from the place of residence of the applicant. The ID card issued by the head of the institution also should be attached for address proof.</p><hr>
-          </marquee>
           </div>
+          <div class="menu" class="col-md-6 col-3 my-auto">
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <div class="container-fluid">
+                <div
+                  class="collapse navbar-collapse"
+                  id="navbarSupportedContent"
+                ></div>
+                <ul class="mlist" class="navbar-nav ms-auto">
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="a2 Econ\2nd .html">E-con</a></li>
+                  <li><a href="a3 depots\3rd.html">Depots</a></li>
+                  <li><a href="#">Notifications</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </nav>
       </div>
-  <!-- </div> -->
-        
-        
-       </div>
-    <!-- </section> -->
 
+      <div class="mov">
+        <marquee
+          behavior="scroll"
+          scrolldelay="50"
+          direction="left"
+          onmouseover="this.stop();"
+          onmouseout="this.start();"
+        >
+          <p style="color: #fff">
+            Kerala is issuing Bus concessions to Students of recognized
+            schools/colleges are issued free / concessional passes to travel
+            from their residence to the school/college within the limit of 60
+            Kms.<a href="http://127.0.0.1:5500/a4/4th.html">click here </a>
+          </p>
+        </marquee>
+      </div>
 
-</main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js"
-    integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i"
-    crossorigin="anonymous"></script>
+      <main class="bus">
+        <section>
+          <h1 style="color: #02a308">സ്വാഗതം</h1>
+          <h1 style="color: #ff6200" class="animated infinite heartBeat">
+            welcome to SCAP
+          </h1>
+          <p style="color: #02a308; font-size: 25px; font-weight: 700">
+            "We help you to get Your Online Concession"
+          </p>
+          <a href="a2 Econ\2nd .html" class="btnone">Apply Now</a>
+        </section>
+      </main>
+    </header>
+    <div class="d-flex justify-content-end w-full row p-5">
+      <div  class="col-md-4">
+        <h1 class="py-3">Notifications</h1>
+        <div id="notifications""></div>
+      </div>
+      <script>
+        // Get a reference to the notifications node in Firebase Realtime Database
+        var notificationsRef = firebase.database().ref("notifications");
 
+        // Add a child_added event listener to the notificationsRef to listen for new notifications
+        notificationsRef.on("child_added", function (snapshot) {
+          var notification = snapshot.val();
+          displayNotification(notification);
+        });
 
+        // Function to display the latest notification in the div with the ID "notifications"
+        function displayNotification(notification) {
+          var notificationsDiv = document.getElementById("notifications");
+
+          var alert = document.createElement("div");
+          alert.classList.add("alert", "alert-primary");
+          alert.role = "alert";
+          alert.textContent = notification.title + ": " + notification.content;
+
+          notificationsDiv.appendChild(alert);
+        }
+      </script>
+    </div>
+    <main class="p-5 overflow-hidden">
+      <section class="">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card p-5" style="width: 100%">
+                <h2 class="text-center" style="color: black">
+                  Chairman & Managing Director
+                </h2>
+                <img
+                  src="data:image/jpeg;base64,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"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h4 class="card-title" style="color: black">
+                    <b>Sri. Biju Prabhakar IAS</b>
+                  </h4>
+                  <p class="card-text" style="color: black">
+                    A board of Directors consisting of fifteen members including
+                    the Chairman governs the Corporation.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="news-main" style="height: 100px !important"> 
+                  <img
+                    src="https://3.bp.blogspot.com/-VTnJrVTjYOw/WwpnJ7PFbzI/AAAAAAAAJtw/DdNOhAauVTMJpuiLB9er4oyuH47FICkPACLcBGAs/s1600/ksrtc-student-concession.jpg"
+                  />
+
+                  <h2 style="color: black; text-align: center" class="mb-3">
+                    <u>
+                      <b>KSRTC concession for students & Guidelines to Apply</b>
+                    </u>
+                  </h2>
+                  <p style="color: black">
+                    Let us have a look on the instructions to be followed for
+                    availing of concession from KSRTC for school and college
+                    students. A distance of 40 km is the limit set by KSRTC for
+                    students to avail of concession. For more than this limit,
+                    the students should produce a certificate of attestation
+                    from the head of the institution, stating that the student
+                    has got admission under govt merit quota and there is no
+                    other institution within the set limit of 40 km of distance
+                    which conducts the course of study chosen by the student.
+                    Usually, the bus concession is permitted to students to
+                    travel in ordinary buses only. The bus concession is
+                    allotted from the day of commencement of the course of study
+                    for school and college level students and those who study
+                    under semester system can avail of it continuously – from
+                    the beginning to the end of the course.
+                  </p>
+                  <hr />
+
+                  <h2 style="color: black; text-align: center">
+                    <u><b>How to apply for KSRTC concession</b></u>
+                  </h2>
+                  <br /><br />
+                  <p style="color: black">
+                    When a student applies for KSRTC concession for the first
+                    time, he/she should get an identification certificate in the
+                    prescribed format(application form can be downloaded from
+                    the link below). Along with the application, 2 photographs
+                    attested by the head of the institution also be submitted.
+                    This application form should be given to the KSRTC depot
+                    which is very nearby from the place of residence of the
+                    applicant. The ID card issued by the head of the institution
+                    also should be attached for address proof.
+                  </p>
+                  <hr /> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
