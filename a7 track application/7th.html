@@ -35,6 +35,13 @@
             });
         });
       }
+      function getCurrentDate() {
+        const date = new Date();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        const year = date.getFullYear();
+        return `${month}/${day}/${year}`;
+      }
     </script>
   </head>
   <body>
@@ -121,16 +128,26 @@
               <td class="card-text">Photo: <a target="_blank" href="${
                 registrationData.photo
               }">File</a></td>
+              <td class="card-text">Renew/Apply Date: ${
+                registrationData.pdate
+              }</td>
               </tr>
               </table>
               </div>
               <div class="p-4">
                 ${
-                  registrationData.payment && registrationData.approved
+                  registrationData.approved
                     ? ` 
-                  Payment of ₹${registrationData.payment} is complete 
-                      `
-                    : ` 
+                    <div> 
+                      <div>
+                        ${
+                          registrationData.payment
+                            ? `
+                        Payment of ₹${registrationData.payment} is complete 
+                          `
+                            : ``
+                        }
+                      </div> 
                     <div>
                       <div class="card">
                         <div class="card-body">
@@ -138,12 +155,21 @@
                           <p class="card-text">₹<span id="amount">
                             ${amountPerMonth}
                           </span
-                          ></p> 
-                          <button class="btn btn-primary my-2" id="pay-now-btn">Pay Now</button>
+                          ></p>  
+                        <div>
+                          <select id="duration">
+                            <option value="1" selected>1 Month</option>
+                            <option value="3">3 Month</option>
+                          </select>
+                        </div>
+                          <button class="btn btn-primary my-2" id="pay-now-btn">
+                            ${registrationData.payment ? `Pay Now` : `Renew`}
+                            </button>
                         </div>
                       </div>
                     </div>
-                    `
+                      `
+                    : `    `
                 }
               </div>
           </div>`;
@@ -152,6 +178,10 @@
                 $("#pay-now-btn").click(function () {
                   const amount = $("#amount").text();
                   setPayment(key, amount);
+                });
+                $("#duration").on("change", function () {
+                  const val = $(this).val();
+                  $("#amount").text(val * amountPerMonth);
                 });
               });
             }
@@ -165,6 +195,7 @@
         registrationRef.update(
           {
             payment: amount,
+            pdate: getCurrentDate(),
           },
           function (error) {
             if (error) {

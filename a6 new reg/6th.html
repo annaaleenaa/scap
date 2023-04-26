@@ -213,7 +213,14 @@
 
                   <tr>
                     <td><label for="current-date">Current Date:</label></td>
-                    <td><input type="text" id="currentdate" disabled /></td>
+                    <td>
+                      <input
+                        type="text"
+                        id="currentdate"
+                        disabled
+                        name="pdate"
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td>Aadhar PDF</td>
@@ -352,7 +359,6 @@
             e.preventDefault();
             var formData = $(this).serialize();
             const obj = serializeToObject(formData);
-            console.log(obj);
             try {
               const concession_file = await fileRead(
                 document.getElementById("concession_form").files[0]
@@ -371,14 +377,17 @@
                 aadhar,
                 photo,
                 approved: false,
+                pdate: $("#currentdate").val(),
               };
 
               const nfilled = Object.keys(registrationData).filter((key) => {
                 const data = registrationData[key];
                 return data === "";
               });
-              if (nfilled.length > 0)
+              if (nfilled.length > 0) {
                 alert(`fields ${nfilled.join(", ")} is not filled!`);
+                return;
+              }
 
               console.log(registrationData);
               registrationsRef.push(registrationData);
