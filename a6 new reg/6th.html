@@ -204,6 +204,13 @@
                   </tr>
 
                   <tr>
+                    <td>Total Distance:</td>
+                    <td>
+                      <input type="number" disabled id="distance" />
+                    </td>
+                  </tr>
+
+                  <tr>
                     <td><label for="current-date">Current Date:</label></td>
                     <td><input type="text" id="currentdate" disabled /></td>
                   </tr>
@@ -303,10 +310,20 @@
           </div>
         </div>
         <script>
-          {
-            document.getElementById("currentdate").value =
-              new Date().toLocaleDateString();
+          function dChange() {
+            const p1 = $("#stop1").val();
+            const p2 = $("#stop2").val();
+            const distance = Math.abs(
+              parseInt(p1 || "") - parseInt(p2 || "") || 0
+            );
+            console.log(p1, p2, distance);
+            $("#distance").val(distance);
           }
+          $("#stop1").on("keyup", dChange);
+          $("#stop2").on("keyup", dChange);
+
+          document.getElementById("currentdate").value =
+            new Date().toLocaleDateString();
 
           function calculateAge() {
             var dob = new Date(document.getElementById("dob").value);
