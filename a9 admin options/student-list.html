@@ -51,27 +51,42 @@
             if (error) {
               console.error("Error approving registration:", error);
             } else {
-              getUnapprovedRegistrations();
+              getRegistrations();
+            }
+          }
+        );
+      }
+      function disapproveRegistration(registrationID) {
+        const registrationRef = firebase
+          .database()
+          .ref(`registrations/${registrationID}`);
+        registrationRef.update(
+          {
+            approved: false,
+          },
+          function (error) {
+            if (error) {
+              console.error("Error approving registration:", error);
+            } else {
+              getRegistrations();
             }
           }
         );
       }
 
-      function getUnapprovedRegistrations() {
+      function getRegistrations() {
         const unapprovedRef = firebase
           .database()
-          .ref("registrations")
-          .orderByChild("approved")
-          .equalTo(false);
+          .ref("registrations")  
+          const dataDiv = $("#data");
 
+          var registrationDiv = ``;
         unapprovedRef.once("value", function (snapshot) {
-          const dataDiv = document.getElementById("data");
           snapshot.forEach(function (childSnapshot) {
             const registrationData = childSnapshot.val();
             const registrationID = childSnapshot.key;
-            const registrationDiv = document.createElement("div");
-            registrationDiv.innerHTML = `
-            <div class="card">
+            registrationDiv += `
+            <div class="card m-2">
             <div class="card-body">
               <h2 class="card-title">${registrationData.FirstName} ${registrationData.LastName}</h2>
               <table>
@@ -99,16 +114,22 @@
               <td class="card-text">Photo: <a target="_blank" href="${registrationData.photo}">File</a></td>
               </tr>
               </table>
+              ${
+                registrationData.approved ? (`
+              <button class="btn btn-primary" onclick="disapproveRegistration('${registrationID}')">Disapprove</button>
+                `) : (`  
               <button class="btn btn-primary" onclick="approveRegistration('${registrationID}')">Approve</button>
+              `)
+              }
             </div>
           </div>
 
           `;
-            dataDiv.appendChild(registrationDiv);
           });
+            dataDiv.html(registrationDiv);
         });
       }
-      getUnapprovedRegistrations();
+      getRegistrations();
     </script>
   </body>
 </html>
