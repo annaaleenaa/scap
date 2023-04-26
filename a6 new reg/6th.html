@@ -11,6 +11,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
     <script src="../assets/fb_config.js"></script>
     <script src="../assets/fileRead.js"></script>
+    <script src="../assets/distance.js"></script>
   </head>
   <body>
     <header>
@@ -310,17 +311,8 @@
           </div>
         </div>
         <script>
-          function dChange() {
-            const p1 = $("#stop1").val();
-            const p2 = $("#stop2").val();
-            const distance = Math.abs(
-              parseInt(p1 || "") - parseInt(p2 || "") || 0
-            );
-            console.log(p1, p2, distance);
-            $("#distance").val(distance);
-          }
-          $("#stop1").on("keyup", dChange);
-          $("#stop2").on("keyup", dChange);
+          $("#stop1").on("keyup", distance);
+          $("#stop2").on("keyup", distance);
 
           document.getElementById("currentdate").value =
             new Date().toLocaleDateString();

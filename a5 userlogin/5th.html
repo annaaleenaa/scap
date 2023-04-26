@@ -141,7 +141,7 @@
         </div>
         <button type="submit" class="btn btn-success">Login</button>
         <a href="../a6 new reg\6th.html">New?Register here</a>
-        <a href="../a10 admin forgot password\10th.html" class="ms-5"
+        <a href="../a10 user forgot password/10th.html" class="ms-5"
           >Forgot Password!</a
         >
       </form>
@@ -161,7 +161,6 @@
         var formData = $(this).serialize();
         const obj = serializeToObject(formData);
         get_user(obj.user).then((user) => {
-          console.log(user);
           if (user.password === obj.pass) {
             console.log(obj);
             localStorage.setItem("r_user", obj.user);

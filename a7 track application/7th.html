@@ -79,10 +79,7 @@
           get_registration(su).then(({ key, data }) => {
             if (data) {
               const registrationData = data;
-              amountPerMonth =
-                Math.abs(
-                  registrationData.busstop1 - registrationData.busstop2
-                ) * 10;
+              amountPerMonth = registrationData.price;
               data = `
             <div class="card" style="width:100%">
             <div class="card-body">
@@ -129,7 +126,7 @@
               </div>
               <div class="p-4">
                 ${
-                  registrationData.payment
+                  registrationData.payment && registrationData.approved
                     ? ` 
                   Payment of ₹${registrationData.payment} is complete 
                       `
@@ -141,14 +138,7 @@
                           <p class="card-text">₹<span id="amount">
                             ${amountPerMonth}
                           </span
-                          ></p>
-                          <div class"p-2">
-                            <span>Select Validity: </span>
-                            <select id = "sel">
-                              <option value = "1">One Month</option>
-                              <option value = "3">Three Months</option>
-                            </select>
-                          </div>
+                          ></p> 
                           <button class="btn btn-primary my-2" id="pay-now-btn">Pay Now</button>
                         </div>
                       </div>
@@ -162,10 +152,6 @@
                 $("#pay-now-btn").click(function () {
                   const amount = $("#amount").text();
                   setPayment(key, amount);
-                });
-                $("#sel").on("change", function () {
-                  const val = $(this).val();
-                  $("#amount").text(val * amountPerMonth);
                 });
               });
             }
